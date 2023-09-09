@@ -1,16 +1,28 @@
 package com.rodrigo.bookstore.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Categoria {
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
+@Entity(name = "tabela_categorias") //nome da tabela no banco de dados com [javapersistence]
+public class Categoria implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
+	@Id //informando que e chave primaria no banco
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
 	private String descricao;
 	
 	//associacoes
+	@OneToMany(mappedBy = "categoria")
 	private List<Livro> livros = new ArrayList<>();
 	
 	//==============================================================================

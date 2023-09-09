@@ -1,9 +1,19 @@
 package com.rodrigo.bookstore.domain;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Livro {
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+@Entity(name = "tabela_livros") //nome da tabela banco de dados com [javapersistence]
+public class Livro implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String titulo;
 	private String nome_autor;
