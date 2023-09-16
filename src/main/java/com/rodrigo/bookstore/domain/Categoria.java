@@ -17,7 +17,7 @@ public class Categoria implements Serializable {
 	
 	@Id //informando que e chave primaria no banco
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Integer id;
 	private String nome;
 	private String descricao;
 	
@@ -33,7 +33,7 @@ public class Categoria implements Serializable {
 		super();
 	}
 
-	public Categoria(Long id, String nome, String descricao) {
+	public Categoria(Integer id, String nome, String descricao) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -43,11 +43,11 @@ public class Categoria implements Serializable {
 	//==============================================================================
 	//getters e setters
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
