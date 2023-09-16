@@ -40,7 +40,7 @@ public class CategoriaResource {
 	}
 	
 	//====================================================================
-	//end point para todas as listagem das categorias disponveis
+	//end point para as listagem das categorias disponveis
 	
 	@GetMapping
 	public ResponseEntity<List<CategoriaDTO>> findAll(){
