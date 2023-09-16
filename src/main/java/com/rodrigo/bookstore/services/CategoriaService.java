@@ -19,7 +19,7 @@ public class CategoriaService {
 	private CategoriaRepository repository;
 
 	//=======================================================================================================
-	// metodo do Servico de busca a categoria pelo id
+	// camada do servico de busca a categoria pelo [GET] id
 	
 	public Categoria findById(Integer id) {
 		Optional<Categoria>obj = repository.findById(id);
@@ -30,14 +30,14 @@ public class CategoriaService {
 	}
 	
 	//=======================================================================================================
-	//metodo de Servico para trazer todas os dados da categorias
+	//camada do servicopara trazer todas os dados da categorias
 	
 	public List<Categoria> findAll(){
 		return repository.findAll();
 	}
 	
 	//=======================================================================================================
-	//metodo de Servico para criar (CREATE) uma categoria
+	//camada do servico para criar (CREATE) uma categoria
 	
 	public Categoria create(Categoria obj) {
 		obj.setId(null); //id ja vai recer null para nao atualizar o id que ja existe []
@@ -45,7 +45,7 @@ public class CategoriaService {
 	}
 	
 	//=======================================================================================================
-	//metodo de Servico para fazer a Atualizacao (Update) uma categoria
+	//camada do servico para fazer a Atualizacao (Update) uma categoria
 	
 	public Categoria update(Integer id, CategoriaDTO objDto) {
 		Categoria obj = findById(id); //encontrando o id que quer atualizar
@@ -55,14 +55,15 @@ public class CategoriaService {
 	}
 
 	//=======================================================================================================
-	//metodo de Servico para deletar (DELETE) uma categoria
+	//camada do servico para deletar (DELETE) uma categoria
 	
 	public void delete(Integer id) {
 		findById(id); //verificando se existe esse id para deletar
 		try {
 			repository.deleteById(id);
 		} catch (DataIntegrityViolationException e) {
-			throw new com.rodrigo.bookstore.services.exceptions.DataIntegrityViolationException("Categoria nao pode ser deletado! Possui livros associados");
+			throw new com.rodrigo.bookstore.services.exceptions.DataIntegrityViolationException(""
+					+ "Categoria nao pode ser deletado! Possui livros associados");
 		}
 	}
 	
