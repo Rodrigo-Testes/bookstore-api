@@ -1,9 +1,16 @@
 package com.rodrigo.bookstore.dtos;
 
+
 import java.io.Serializable;
 
-import com.rodrigo.bookstore.domain.Categoria;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 
+
+@Data
+@Builder
+@AllArgsConstructor
 public class CategoriaDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -14,7 +21,7 @@ public class CategoriaDTO implements Serializable {
 	//=====================================================================
 	//constructs
 	
-	public CategoriaDTO() {
+	/*public CategoriaDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -51,5 +58,5 @@ public class CategoriaDTO implements Serializable {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
-	}
+	}*/
 }

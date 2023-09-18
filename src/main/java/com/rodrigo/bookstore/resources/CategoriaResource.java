@@ -46,7 +46,8 @@ public class CategoriaResource {
 	public ResponseEntity<List<CategoriaDTO>> findAll(){
 		List<Categoria> list = service.findAll();
 		//transformando a lista de Categoria para DTO
-		List<CategoriaDTO> listDTO = list.stream().map(obj -> new CategoriaDTO(obj)).collect(Collectors.toList());
+		//List<CategoriaDTO> listDTO = list.stream().map(obj -> new CategoriaDTO(obj)).collect(Collectors.toList());
+		List<CategoriaDTO> listDTO = list.stream().map(obj -> CategoriaDTO.builder().id(obj.getId()).build()).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDTO);
 	}
 	
@@ -66,7 +67,8 @@ public class CategoriaResource {
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<CategoriaDTO> update(@PathVariable Integer id, @RequestBody CategoriaDTO objDto){
 		Categoria newObj = service.update(id,objDto);
-		return ResponseEntity.ok().body(new CategoriaDTO(newObj));
+		//return ResponseEntity.ok().body(new CategoriaDTO(newObj));
+		return ResponseEntity.ok().body(CategoriaDTO.builder().id(newObj.getId()).build());
 	}
 	
 	//====================================================================
@@ -77,5 +79,8 @@ public class CategoriaResource {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
+	
+	//====================================================================
+	//end point de DELETE
 	
 }
