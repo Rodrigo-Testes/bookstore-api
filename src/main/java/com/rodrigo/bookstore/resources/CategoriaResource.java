@@ -80,7 +80,6 @@ public class CategoriaResource {
 		return ResponseEntity.noContent().build();
 	}
 	
-	//====================================================================
-	//end point de DELETE
+
 	
 }

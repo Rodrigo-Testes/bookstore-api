@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.rodrigo.bookstore.domain.Categoria;
@@ -40,6 +41,7 @@ public class LivroService {
 		categoriaService.findById(id_cat); //validacao para ve se a categoria existe na base de dados 
 		return livroRepository.findAllByCategoria(id_cat);
 	}
+	
 	//=======================================================================================================
 	//camada do servico para fazer a Atualizacao (Update) uma categoria
 
@@ -55,4 +57,26 @@ public class LivroService {
 		livro.setNome_autor(atuaLivro.getNome_autor());
 		livro.setTexto(atuaLivro.getTexto());
 	}
+	//=======================================================================================================
+	//camada do servico para cadastrar os livros (POST)
+	
+	public Livro create(Integer id_cat, Livro obj) {
+		obj.setId(null);
+		Categoria categoria = categoriaService.findById(id_cat);
+		obj.setCategoria(categoria);
+		return livroRepository.save(obj);
+	}
+	
+	//=======================================================================================================
+	//camada do servico para fazer para deletar (DELETE)
+	public void delete(Integer id) {
+		findById(id); //verificando o id se ele existe 
+		try {
+			livroRepository.deleteById(id);
+		} catch (DataIntegrityViolationException e) {
+			throw new com.rodrigo.bookstore.services.exceptions.DataIntegrityViolationException(""
+					+ "Categoria nao pode ser deletado! Possui livros associados");
+		}
+	}
+
 }
