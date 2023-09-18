@@ -34,7 +34,7 @@ public class CategoriaService {
 	
 	public List<Categoria> findAll(){
 		return repository.findAll();
-	}
+	} 
 	
 	//=======================================================================================================
 	//camada do servico para criar (CREATE) uma categoria

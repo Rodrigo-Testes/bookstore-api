@@ -1,5 +1,6 @@
 package com.rodrigo.bookstore.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +18,25 @@ public class LivroService {
 	@Autowired
 	private LivroRepository livroRepository;
 	
+	@Autowired
+	private CategoriaService categoriaService;
 	
-	//camada do servico para encontrar o [GET] id
+	//=======================================================================================================
+	// camada do servico de busca a categoria pelo [GET] id
+	
 	public Livro findById(Integer id) {
 		Optional<Livro> obj = livroRepository.findById(id);
 		//retorna nada essa mensagem caso nao tem nada nesse ID
 		return obj.orElseThrow(() 
 				 -> new ObjectNotFoundException("Objeto nao encontrado! Id: " + id + ", Tipo: " 
 				 + Categoria.class.getName())); 
+	}
+	
+	//=======================================================================================================
+	//camada do servicopara trazer todas os dados da categorias
+	
+	public List<Livro> findAll(Integer id_cat){
+		categoriaService.findById(id_cat); //validacao para ve se a categoria existe na base de dados 
+		return livroRepository.findAllByCategoria(id_cat);
 	}
 }

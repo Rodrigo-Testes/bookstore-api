@@ -11,7 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
-@Entity(name = "tabela_categorias") //nome da tabela no banco de dados com [javapersistence]
+@Entity(name = "tb_categoria")//nome da tabela no banco de dados com [javapersistence]
 public class Categoria implements Serializable {
 	private static final long serialVersionUID = 1L;
 	

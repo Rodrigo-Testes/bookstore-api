@@ -12,7 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
-@Entity(name = "tabela_livros") //nome da tabela banco de dados com [javapersistence]
+@Entity(name = "tb_livro") //nome da tabela banco de dados com [javapersistence]
 public class Livro implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
