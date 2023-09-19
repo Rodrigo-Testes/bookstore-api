@@ -20,7 +20,7 @@ public class DevConfig {
 	private String stategy;
 	
 	@Bean
-	public boolean insInstanciaBaseDeDados() {
+	public boolean InstanciaBaseDeDados() {
 		if(stategy.equals("create")) {
 			this.dbservice.instanciandoBaseDeDados();
 		}

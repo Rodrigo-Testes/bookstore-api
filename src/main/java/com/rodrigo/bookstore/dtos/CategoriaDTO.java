@@ -3,6 +3,9 @@ package com.rodrigo.bookstore.dtos;
 
 import java.io.Serializable;
 
+import org.hibernate.validator.constraints.Length;
+
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,7 +18,13 @@ public class CategoriaDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
+	
+	@NotEmpty (message = "Campo DESCRICAO e requerido")
+	@Length(min = 3, max = 100, message = "O campo NOME deve ter entre 3 e 100 caracteres")
 	private String nome;
+	
+	@NotEmpty (message = "Campo DESCRICAO e requerido")
+	@Length(min = 3, max = 200, message = "O campo DESCRICAO deve ter entre 3 e 100 caracteres")
 	private String descricao;
 	
 	//=====================================================================

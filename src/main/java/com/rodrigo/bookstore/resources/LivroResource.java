@@ -22,6 +22,8 @@ import com.rodrigo.bookstore.domain.Livro;
 import com.rodrigo.bookstore.dtos.LivroDTO;
 import com.rodrigo.bookstore.services.LivroService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping(value = "/livros")
 public class LivroResource {
@@ -53,7 +55,7 @@ public class LivroResource {
 	//==================================================================
 	//end point de UPDATE
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<Livro> update(@PathVariable Integer id, @RequestBody Livro livroDTO) {
+	public ResponseEntity<Livro> update(@PathVariable Integer id,@Valid @RequestBody Livro livroDTO) {
 		Livro livro = livroService.update(id,livroDTO);
 		return ResponseEntity.ok().body(livro);
 	}
@@ -61,7 +63,7 @@ public class LivroResource {
 	//==================================================================
 	//end point de PATCH
 	@PatchMapping(value = "/{id}")
-	public ResponseEntity<Livro> updatePatch(@PathVariable Integer id, @RequestBody Livro livroDTO) {
+	public ResponseEntity<Livro> updatePatch(@PathVariable Integer id, @Valid @RequestBody Livro livroDTO) {
 		Livro livro = livroService.update(id,livroDTO);
 		return ResponseEntity.ok().body(livro);
 	}
@@ -70,7 +72,7 @@ public class LivroResource {
 	
 	@PostMapping
 	public  ResponseEntity<Livro> create(@RequestParam(value = "categoria", defaultValue = "0") Integer id_cat,
-			@RequestBody Livro obj){
+			@Valid @RequestBody Livro obj){
 		Livro newObj = livroService.create(id_cat, obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/livros/{id}").buildAndExpand(newObj.getId()).toUri();
 		return ResponseEntity.created(uri).build();

@@ -68,7 +68,7 @@ public class LivroService {
 	}
 	
 	//=======================================================================================================
-	//camada do servico para fazer para deletar (DELETE)
+	//camada do servico para deletar (DELETE)
 	public void delete(Integer id) {
 		findById(id); //verificando o id se ele existe 
 		try {

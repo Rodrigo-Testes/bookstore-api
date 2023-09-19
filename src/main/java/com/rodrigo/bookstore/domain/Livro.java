@@ -3,6 +3,8 @@ package com.rodrigo.bookstore.domain;
 import java.io.Serializable;
 import java.util.Objects;
 
+import org.hibernate.validator.constraints.Length;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
@@ -11,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotEmpty;
 
 @Entity(name = "tb_livro") //nome da tabela banco de dados com [javapersistence]
 public class Livro implements Serializable {
@@ -19,8 +22,18 @@ public class Livro implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@NotEmpty(message = "Campo TITULO e requerido")
+	@Length(min = 3, max = 50, message = "O campo TITU")
 	private String titulo;
+	
+	@NotEmpty(message = "Campo NOME DO AUTOR e requerido")
+	@Length(min = 3, max = 50, message = "O campo NOME DO AUTO")
 	private String nome_autor;
+	
+	@NotEmpty(message = "Campo TEXTO e requerido")
+	@Length(min = 3, max = 100,message = "Campo TEXTO e requerido")
+	//@Column(name = "texto", length = 20000)
 	private String texto;
 
 	// associacao

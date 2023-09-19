@@ -2,11 +2,11 @@ package com.rodrigo.bookstore.resources;
 
 import java.net.URI;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,8 +21,11 @@ import com.rodrigo.bookstore.domain.Categoria;
 import com.rodrigo.bookstore.dtos.CategoriaDTO;
 import com.rodrigo.bookstore.services.CategoriaService;
 
+import jakarta.validation.Valid;
+
 //as requisicoes do front-end chega na camada de resource [Rest]
 
+@CrossOrigin("*")
 @RestController //informando ao spring que aqui e a classe vai receber requisicoes de outras fontes
 @RequestMapping(value = "/categorias" )
 public class CategoriaResource {
@@ -55,7 +58,7 @@ public class CategoriaResource {
 	//end point para Criar 
 	
 	@PostMapping
-	public ResponseEntity<Categoria> create(@RequestBody Categoria obj){
+	public ResponseEntity<Categoria> create(@Valid @RequestBody Categoria obj){
 		obj = service.create(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).body(obj);
@@ -65,7 +68,7 @@ public class CategoriaResource {
 	//end point de update
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<CategoriaDTO> update(@PathVariable Integer id, @RequestBody CategoriaDTO objDto){
+	public ResponseEntity<CategoriaDTO> update(@Valid @PathVariable Integer id, @RequestBody CategoriaDTO objDto){
 		Categoria newObj = service.update(id,objDto);
 		//return ResponseEntity.ok().body(new CategoriaDTO(newObj));
 		return ResponseEntity.ok().body(CategoriaDTO.builder().id(newObj.getId()).build());

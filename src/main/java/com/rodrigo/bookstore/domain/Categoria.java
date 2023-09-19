@@ -5,11 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import org.hibernate.validator.constraints.Length;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotEmpty;
 
 @Entity(name = "tb_categoria")//nome da tabela no banco de dados com [javapersistence]
 public class Categoria implements Serializable {
@@ -18,7 +21,13 @@ public class Categoria implements Serializable {
 	@Id //informando que e chave primaria no banco
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@NotEmpty (message = "Campo NOME e requerido")
+	@Length(min = 3, max = 100, message = "O campo NOME deve ter entre 3 e 100 caracteres")
 	private String nome;
+	
+	@NotEmpty (message = "Campo DESCRICAO e requerido")
+	@Length(min = 3, max = 200, message = "O campo DESCRICAO deve ter entre 3 e 100 caracteres")
 	private String descricao;
 	
 	//associacoes
