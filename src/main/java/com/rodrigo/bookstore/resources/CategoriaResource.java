@@ -33,7 +33,7 @@ public class CategoriaResource {
 	@Autowired 
 	private CategoriaService service; //chamando o servico na classe CategoriaService
 	
-	//============================================================================================================
+	//==========================================================================================================
 	//pegando o end point pelo id
 	
 	@GetMapping(value = "/{id}")
@@ -42,7 +42,7 @@ public class CategoriaResource {
 		return ResponseEntity.ok().body(obj);
 	}
 	
-	//====================================================================
+	//==========================================================================================================
 	//end point para as listagem das categorias disponveis
 	
 	@GetMapping
@@ -54,7 +54,7 @@ public class CategoriaResource {
 		return ResponseEntity.ok().body(listDTO);
 	}
 	
-	//====================================================================
+	//=========================================================================================================
 	//end point para Criar 
 	
 	@PostMapping
@@ -64,7 +64,7 @@ public class CategoriaResource {
 		return ResponseEntity.created(uri).body(obj);
 	}
 	
-	//====================================================================
+	//=========================================================================================================
 	//end point de update
 	
 	@PutMapping(value = "/{id}")
@@ -74,7 +74,7 @@ public class CategoriaResource {
 		return ResponseEntity.ok().body(CategoriaDTO.builder().id(newObj.getId()).build());
 	}
 	
-	//====================================================================
+	//=========================================================================================================
 	//end point de DELETE
 	
 	@DeleteMapping(value = "/{id}")

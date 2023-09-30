@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.rodrigo.bookstore.domain.Categoria;
 import com.rodrigo.bookstore.domain.Livro;
-import com.rodrigo.bookstore.dtos.LivroDTO;
 import com.rodrigo.bookstore.repository.LivroRepository;
 import com.rodrigo.bookstore.services.exceptions.ObjectNotFoundException;
 

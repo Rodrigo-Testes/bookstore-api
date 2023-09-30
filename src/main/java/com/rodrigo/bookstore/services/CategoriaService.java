@@ -48,6 +48,12 @@ public class CategoriaService {
 	//camada do servico para fazer a Atualizacao (Update) uma categoria
 	
 	public Categoria update(Integer id, CategoriaDTO objDto) {
+		//faz a mesma coisa da linha 54 e 55, ele da sets nos campos
+//		obj = Categoria.builder()
+//				.nome(objDto.getNome())
+//				.descricao(objDto.getDescricao())
+//				.build();
+		
 		Categoria obj = findById(id); //encontrando o id que quer atualizar
 		obj.setNome(objDto.getNome()); // atualizando o nome da categoria
 		obj.setDescricao(objDto.getDescricao()); //atualizando o nome da descricao da categoria
